@@ -115,7 +115,15 @@ docker inspect --format='{{.Architecture}}' itefuir/alist-strm:latest
 docker save -o itefuir-alist-strm-amd64.tar itefuir/alist-strm:latest
 ```
 
-### 3. OpenList 镜像（使用 beta 版本）
+### 3. OpenList 镜像
+
+```bash
+docker pull --platform=linux/amd64 openlistteam/openlist:latest
+docker inspect --format='{{.Architecture}}' openlistteam/openlist:latest
+docker save -o openlist-amd64.tar openlistteam/openlist:latest
+```
+
+###OpenList 镜像现在还没有latest（使用 beta 版本）
 
 ```bash
 docker pull --platform=linux/amd64 openlistteam/openlist:beta

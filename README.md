@@ -69,8 +69,7 @@ mkdir -p \
 
 ## 三、安装 Docker
 
-1. 前往 [Docker Ubuntu 软件包目录](https://download.docker.com/linux/ubuntu/dists/noble/pool/stable/amd64/) 下载以下 `.deb` 安装包：
-
+1. 前往 <a href="https://download.docker.com/linux/ubuntu/dists/noble/pool/stable/amd64/" target="_blank" rel="noopener noreferrer">Docker Ubuntu 软件包目录</a> 下载以下 `.deb` 安装包：
    - `docker-ce`
    - `docker-ce-cli`
    - `containerd.io`

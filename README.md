@@ -301,6 +301,7 @@ docker logs openlist
 
 > 示例密码：`Successfully created the admin user... password is: 0p93Lr9V`  
 > 示例密码：`password is: 0p93Lr9V`    这里 0p93Lr9V 就是初始密码 包含大小写 请复制
+> 
 > 浏览器访问：`http://服务器IP:5244`，账号：`admin`，密码：日志中的初始密码。
 
 ---
@@ -339,11 +340,13 @@ docker start openlist
 docker start alist-strm-container
 ```
 
-- 设置自动重启：
+- 若想让这些容器在系统重启后自动启动
+- 可使用 docker update 命令更新它们的重启策略，示例如下：
 
 ```bash
 docker update --restart=always emby openlist alist-strm-container
 ```
+> 上述命令会把这三个容器的重启策略设置为 always，意味着无论容器因何原因停止，Docker 都会尝试重新启动它，包括在系统重启之后。
 
 ---
 
@@ -361,7 +364,7 @@ docker load -i /root/download/itefuir-alist-strm-amd64.tar
 docker stop alist-strm-container
 ```
 
-### 3. 备份配置
+### 3. 备份配置（可选）
 
 ```bash
 cp -r /root/docker/strm/config/ /root/docker/strm/config_backup_$(date +%s)
@@ -372,6 +375,7 @@ cp -r /root/docker/strm/config/ /root/docker/strm/config_backup_$(date +%s)
 ```bash
 docker rm alist-strm-container
 ```
+> 注意：docker rm 只是删除容器实例，不会删除挂载在本地路径中的配置文件。只要新建容器时继续使用相同的挂载目录，原有的配置就会被自动加载，无需重新配置。
 
 ### 5. 重建容器（保持原端口配置）
 

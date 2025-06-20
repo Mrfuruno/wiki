@@ -163,7 +163,7 @@ docker inspect --format='{{.Architecture}}' openlistteam/openlist:latest
 docker save -o openlist-amd64.tar openlistteam/openlist:latest
 ```
 
-###3. 1 OpenList 镜像现在还没有latest（使用 beta 版本）
+### 3. 1 OpenList 镜像现在还没有latest（使用 beta 版本）
 
 ```bash
 docker pull --platform=linux/amd64 openlistteam/openlist:beta
@@ -171,7 +171,7 @@ docker inspect --format='{{.Architecture}}' openlistteam/openlist:beta
 docker save -o openlist-amd64.tar openlistteam/openlist:beta
 ```
 
-###4 如果需要将镜像导出为 .tar 文件并保存到指定路径，可以使用如下命令：
+### 4 如果需要将镜像导出为 .tar 文件并保存到指定路径，可以使用如下命令：
 
 ```bash
 docker save -o /root/download/openlist-amd64.tar openlistteam/openlist:latest

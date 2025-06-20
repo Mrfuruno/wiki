@@ -403,3 +403,20 @@ docker ps -a
 ---
 
 
+<p align="center">
+  <img src="images/Docker command diagram.png" alt="Eat the seeds">
+</p>
+
+---
+
+感谢打赏
+
+如有问题请在issues提问
+
+<p align="center">
+  <img src="images/images/dasang.jpg" alt="Eat the seeds">
+</p>
+
+
+
+

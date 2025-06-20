@@ -1,3 +1,6 @@
+<p align="center">
+  <img src="images/Eat%20the%20seeds.svg" alt="Eat the seeds">
+</p>
 
 # Ubuntu 安装 Emby 并挂载网盘远程播放指南 [非302]
 

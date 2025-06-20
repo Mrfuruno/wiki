@@ -86,6 +86,9 @@ mkdir -p \
 ```bash
 cd /root/download
 sudo dpkg -i *.deb
+```
+如果出现依赖缺失，运行以下命令修复：
+```
 sudo apt-get install -f
 ```
 
@@ -96,10 +99,45 @@ sudo systemctl status docker
 docker -v
 docker images
 ```
+查询docker版本号码
+docker -v
+查看docker中有什么镜像
+docker images
 
 ---
 
 ## 四、下载并导入镜像（推荐在网络好的电脑完成）
+
+这次教程的环境是 Ubuntu 24.04 LTS 服务器，架构是 amd64。在这种环境下，如果你用正常网络下载 Docker 镜像并导出，要注意一点：如果你用的是 ARM 电脑，默认拉下来的是 ARM 架构的镜像。要想在 amd64 服务器上部署，就得强制指定架构，强制拉取 amd64 版本的镜像，这样才能保证镜像能正常运行。
+
+## 项目资源整理
+
+###  Emby
+
+- **Docker 镜像地址**：  
+  [https://hub.docker.com/r/amilys/embyserver](https://hub.docker.com/r/amilys/embyserver)
+
+---
+
+###  alist-strm
+
+- **GitHub 地址**：  
+  [https://github.com/tefuirZ/alist-strm](https://github.com/tefuirZ/alist-strm)
+
+- **Docker 镜像地址**：  
+  [https://hub.docker.com/r/itefuir/alist-strm](https://hub.docker.com/r/itefuir/alist-strm)
+
+---
+
+###  OpenList
+
+- **GitHub 地址**：  
+  [https://github.com/OpenListTeam/openlist](https://github.com/OpenListTeam/openlist)
+
+- **Docker 镜像地址**：  
+  [https://hub.docker.com/r/openlistteam/openlist](https://hub.docker.com/r/openlistteam/openlist)
+
+
 
 ### 1. Emby 镜像
 
@@ -125,7 +163,7 @@ docker inspect --format='{{.Architecture}}' openlistteam/openlist:latest
 docker save -o openlist-amd64.tar openlistteam/openlist:latest
 ```
 
-###OpenList 镜像现在还没有latest（使用 beta 版本）
+###3. 1 OpenList 镜像现在还没有latest（使用 beta 版本）
 
 ```bash
 docker pull --platform=linux/amd64 openlistteam/openlist:beta
@@ -133,11 +171,23 @@ docker inspect --format='{{.Architecture}}' openlistteam/openlist:beta
 docker save -o openlist-amd64.tar openlistteam/openlist:beta
 ```
 
+###4 如果需要将镜像导出为 .tar 文件并保存到指定路径，可以使用如下命令：
+
+```bash
+docker save -o /root/download/openlist-amd64.tar openlistteam/openlist:latest
+```
+使用 docker save 命令时，指定保存的路径和文件名（如 /路径/路径/文件名.tar），后面跟上要导出的镜像及版本（项目名称:版本号），即可将镜像导出到指定位置。
+
 ---
 
 ## 五、镜像导入服务器
 
+使用 SFTP 工具将 `.tar ` 包上传到 `/root/download/`
+
+进入镜像存放目录  镜像导入服务器 并且导入镜像到服务器
+
 ```bash
+cd /root/download
 docker load -i amilys-embyserver-amd64.tar
 docker load -i itefuir-alist-strm-amd64.tar
 docker load -i openlist-amd64.tar
@@ -157,6 +207,30 @@ id
 ---
 
 ## 七、运行容器
+
+安装docker镜像到容器 命令介绍
+docker run -d \
+（docker 运行 创建容器）
+  --name emby \
+（创建容器名字为 emby） 
+  -p 8096:8096 \
+  (-p 内外端口映射设置)
+（容器外部端口：容器内部端口）
+  -p 8920:8920 \
+（容器外部端口：容器内部端口） 
+  -v /root/docker/emby/config/:/config \
+（-v内外路径设置）
+（外部路径：容器内部路径）
+  -v /root/video/:/video \
+（外部路径：容器内部路径）
+  -e UID=0 \
+（之前获取设备id的 UID号码）
+  -e GID=0 \
+（之前获取设备id的 GID号码）
+ -e TZ=Asia/Shanghai \
+（设置容器时区为亚洲上海时区） 
+amilys/embyserver:latest
+（使用（镜像名字）：版本）
 
 ### 1. 运行 Emby 容器
 

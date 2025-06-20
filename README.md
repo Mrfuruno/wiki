@@ -32,7 +32,7 @@ sudo apt install apt-transport-https ca-certificates curl software-properties-co
 
 ## 二、创建必要目录
 
-     📁 路径结构树形图
+📁 路径结构树形图
 以下为安装与挂载路径的树形结构展示：
 ```
 /root

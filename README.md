@@ -100,8 +100,11 @@ docker -v
 docker images
 ```
 查询docker版本号码
+
 docker -v
+
 查看docker中有什么镜像
+
 docker images
 
 ---
@@ -184,7 +187,11 @@ docker save -o /root/download/openlist-amd64.tar openlistteam/openlist:latest
 
 使用 SFTP 工具将 `.tar ` 包上传到 `/root/download/`
 
-进入镜像存放目录  镜像导入服务器 并且导入镜像到服务器
+进入镜像存放目录
+
+镜像导入服务器
+
+并且导入镜像到服务器
 
 ```bash
 cd /root/download
@@ -209,27 +216,49 @@ id
 ## 七、运行容器
 
 安装docker镜像到容器 命令介绍
+
 docker run -d \
+
 （docker 运行 创建容器）
+
   --name emby \
+  
 （创建容器名字为 emby） 
+
   -p 8096:8096 \
+  
   (-p 内外端口映射设置)
+  
 （容器外部端口：容器内部端口）
+
   -p 8920:8920 \
+  
 （容器外部端口：容器内部端口） 
+
   -v /root/docker/emby/config/:/config \
+  
 （-v内外路径设置）
+
 （外部路径：容器内部路径）
+
   -v /root/video/:/video \
+  
 （外部路径：容器内部路径）
+
   -e UID=0 \
+  
 （之前获取设备id的 UID号码）
+
   -e GID=0 \
+  
 （之前获取设备id的 GID号码）
+
  -e TZ=Asia/Shanghai \
+ 
 （设置容器时区为亚洲上海时区） 
+
 amilys/embyserver:latest
+
 （使用（镜像名字）：版本）
 
 ### 1. 运行 Emby 容器

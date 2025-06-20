@@ -414,7 +414,7 @@ docker ps -a
 如有问题请在issues提问
 
 <p align="center">
-  <img src="images/images/dasang.jpg" alt="Eat the seeds">
+  <img src="images/dasang.jpg" alt="Eat the seeds">
 </p>
 
 

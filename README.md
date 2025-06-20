@@ -215,51 +215,51 @@ id
 
 ## 七、运行容器
 
-安装docker镜像到容器 命令介绍
+> 安装docker镜像到容器 命令介绍
 
-docker run -d \
+> docker run -d \
 
-（docker 运行 创建容器）
+> （docker 运行 创建容器）
 
-  --name emby \
+>   --name emby \
   
-（创建容器名字为 emby） 
+> （创建容器名字为 emby） 
 
-  -p 8096:8096 \
+>   -p 8096:8096 \
   
-  (-p 内外端口映射设置)
+>   (-p 内外端口映射设置)
   
-（容器外部端口：容器内部端口）
+> （容器外部端口：容器内部端口）
 
-  -p 8920:8920 \
+>   -p 8920:8920 \
   
-（容器外部端口：容器内部端口） 
+> （容器外部端口：容器内部端口） 
 
-  -v /root/docker/emby/config/:/config \
+>   -v /root/docker/emby/config/:/config \
   
-（-v内外路径设置）
+> （-v内外路径设置）
 
-（外部路径：容器内部路径）
+> （外部路径：容器内部路径）
 
-  -v /root/video/:/video \
+>   -v /root/video/:/video \
   
-（外部路径：容器内部路径）
+> （外部路径：容器内部路径）
 
-  -e UID=0 \
+>   -e UID=0 \
   
-（之前获取设备id的 UID号码）
-
-  -e GID=0 \
-  
-（之前获取设备id的 GID号码）
-
- -e TZ=Asia/Shanghai \
- 
-（设置容器时区为亚洲上海时区） 
-
-amilys/embyserver:latest
-
-（使用（镜像名字）：版本）
+> （之前获取设备id的 UID号码）
+> 
+>   -e GID=0 \
+>   
+> （之前获取设备id的 GID号码）
+> 
+>  -e TZ=Asia/Shanghai \
+>  
+> （设置容器时区为亚洲上海时区） 
+> 
+> amilys/embyserver:latest
+> 
+> （使用（镜像名字）：版本）
 
 ### 1. 运行 Emby 容器
 
@@ -293,13 +293,14 @@ docker run -d \
   openlistteam/openlist:beta
 ```
 
-查看日志获取初始密码：
+> 查看日志获取初始密码：
 
 ```bash
 docker logs openlist
 ```
 
 > 示例密码：`Successfully created the admin user... password is: 0p93Lr9V`  
+> 示例密码：`password is: 0p93Lr9V`    这里 0p93Lr9V 就是初始密码 包含大小写 请复制
 > 浏览器访问：`http://服务器IP:5244`，账号：`admin`，密码：日志中的初始密码。
 
 ---

@@ -169,13 +169,6 @@ docker inspect --format='{{.Architecture}}' openlistteam/openlist:latest
 docker save -o openlist-amd64.tar openlistteam/openlist:latest
 ```
 
-### 3. 1 OpenList 镜像现在还没有latest（使用 beta 版本）
-
-```bash
-docker pull --platform=linux/amd64 openlistteam/openlist:beta
-docker inspect --format='{{.Architecture}}' openlistteam/openlist:beta
-docker save -o openlist-amd64.tar openlistteam/openlist:beta
-```
 
 ### 4 如果需要将镜像导出为 .tar 文件并保存到指定路径，可以使用如下命令：
 
@@ -293,7 +286,7 @@ docker run -d \
   -e PUID=0 \
   -e PGID=0 \
   -e UMASK=022 \
-  openlistteam/openlist:beta
+  openlistteam/openlist:latest
 ```
 
 > 查看日志获取初始密码：
@@ -402,6 +395,175 @@ docker ps -a
 
 ---
 
+## 十一、软件内部设置  (仅供参考)
+### 1.emby 
+先对emby进行核心设置
+
+1. emby 设置
+2. emby 媒体库 设置
+3. emby 子账号 权限 设置  
+4. emby 神医助手 关键 设置 
+
+#### 1.emby 设置
+关闭emby 硬件加速功能
+设置➡️Emby Server➡️正在转码
+
+启动硬件加速(如果可以用) ✅否    (选择 否 ) 
+ 
+<p align="center">
+  <img src="images/00001.jpg" alt="Eat the seeds">
+</p>
+
+> 关闭硬件转码因为硬件转码需要高性能服务器
+
+设置读取媒体信息生成  JSON  文件并保存到视频文件目录而不是 emby 容器内
+
+设置➡️高级➡️神医助手➡️媒体信息提取
+> 可选媒体信息  JSON  根目录  (就是单独给JSON文件设置一个目录)如果不填写该目录默认放到视频文件旁边
+
+<p align="center">
+  <img src="images/00012.jpg" alt="Eat the seeds">
+</p>
+
+
+
+#### 2.emby 媒体库 设置
+设置媒体库权限
+
+新增媒体库
+
+| 名称 | 说明 |
+|------|------|
+| `影片` | 电影|
+| `音乐` | 音乐 |
+| `电视节目`  | 电视剧 |
+| `混合内容` | 视频音乐图片书籍混合内容 |
+
+<p align="center">
+  <img src="images/00005.jpg" alt="Eat the seeds">
+</p>
+
+##(仅供参考设置截图)
+
+### 1. 不管是电影还是电视剧请选择  TheMovieDb 下载元数据
+### 2.  将媒体图片保存到媒体文件夹中  ✅开启
+### 3.  将已下载的字幕保存到媒体文件夹中  ✅开启
+### 4.  其他选项根据自己喜好选择
+
+<p align="center">
+  <img src="images/00006.jpg" alt="Eat the seeds">
+</p>
+<p align="center">
+  <img src="images/00007.jpg" alt="Eat the seeds">
+</p>
+<p align="center">
+  <img src="images/00008.jpg" alt="Eat the seeds">
+</p>
+<p align="center">
+  <img src="images/00009.jpg" alt="Eat the seeds">
+</p>
+<p align="center">
+  <img src="images/00010.jpg" alt="Eat the seeds">
+</p>
+<p align="center">
+  <img src="images/00011.jpg" alt="Eat the seeds">
+</p>
+
+#### 3. emby 子账号 权限 设置 
+关闭子账号 硬件转码权限
+
+设置➡️Emby Server➡️相应用户名称➡️
+
+允许媒体播放  ✅是
+
+如有必要，在媒体播放期间允许音频转码  ✅否
+
+如有必要，在媒体播放期间允许视频转码 ✅否
+
+如有必要，在媒体播放期间允许更改容器格式 ✅否
+
+<p align="center">
+  <img src="images/00002.jpg" alt="Eat the seeds">
+</p>
+
+> #<span style="color:#00BFFF">关闭子账号硬件加速权限使用子账号播放视频</span>
+> #<span style="color:#FF0000">不要使用管理员账号播放视频</span>
+> #<span style="color:#FF0000">因为管理员默认开启硬件加速功能呢</span>
+
+隐私权限 (仅供参考)
+
+<p align="center">
+  <img src="images/00003.jpg" alt="Eat the seeds">
+</p>
+
+
+### 2.OpenList
+
+OpenList挂载教程
+
+1. 前往 [OpenList 挂载网盘教程](https://oplist.org/zh/guide/) 
+2. 前往 [OpenList-115 网盘/分享 挂载教程](https://oplist.org/zh/guide/drivers/115.html) 
+3. 前往 [OpenList-123 网盘/分享/直链 挂载教程](https://oplist.org/zh/guide/drivers/123.html) 
+
+<p align="center">
+  <img src="images/00013.jpg" alt="Eat the seeds">
+</p>
+
+
+### 3.alist-strm
+
+#### 设置➡️脚本全局设置➡️脚本设置
+
+<p align="center">
+  <img src="images/00014.jpg" alt="Eat the seeds">
+</p>
+
+#### 设置➡️创建strmの配置文件➡️添加新配置
+
+<p align="center">
+  <img src="images/00015.jpg" alt="Eat the seeds">
+</p>
+
+#### 设置➡️创建strmの配置文件   选择脚本 运行选定配置  右侧 可以查看脚本日志 
+
+> 脚本一旦启动不能停止 除非docker停止或者重启
+
+
+<p align="center">
+  <img src="images/00016.jpg" alt="Eat the seeds">
+</p>
+
+<p align="center">
+  <img src="images/00017.jpg" alt="Eat the seeds">
+</p>
+
+
+
+### 4.emby 媒体库 选择 strm 生成目录
+
+<p align="center">
+  <img src="images/00018.jpg" alt="Eat the seeds">
+</p>
+
+<p align="center">
+  <img src="images/00019.jpg" alt="Eat the seeds">
+</p>
+
+<p align="center">
+  <img src="images/00020.jpg" alt="Eat the seeds">
+</p>
+
+<p align="center">
+  <img src="images/00021.jpg" alt="Eat the seeds">
+</p>
+
+<p align="center">
+  <img src="images/00022.jpg" alt="Eat the seeds">
+</p>
+
+---
+---
+---
 
 <p align="center">
   <img src="images/Docker command diagram.png" alt="Eat the seeds">

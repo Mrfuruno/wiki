@@ -425,7 +425,13 @@ docker ps -a
   <img src="images/00012.jpg" alt="Eat the seeds">
 </p>
 
+运行扫描所有视频信息的脚本
+设置➡️计划任务➡️神医助手
+> 运行此脚本即可扫描媒体库所有视频文件(不包含iso文件),并且生成  JSON  文件,  JSON  文件存放位置请看wiki上面的  JSON  的介绍.
 
+<p align="center">
+  <img src="images/00023.jpg" alt="Eat the seeds">
+</p>
 
 #### 2.emby 媒体库 设置
 设置媒体库权限
